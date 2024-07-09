@@ -8,4 +8,4 @@ function Ankush() {
   )
 }
 
-export default Ankush
+export default Ankush;

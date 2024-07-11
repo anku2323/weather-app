@@ -2,11 +2,11 @@
 .main-box {
     font-family: Arial, sans-serif;
     padding: 20px;
-    background-color: #f0f4f8;
-    background-image: url(https://i.pinimg.com/564x/83/8c/a8/838ca876b79db25a73021782275ed5a9.jpg);
-    background-repeat: no-repeat;
-    background-position: 0;
+    background: rgb(231,231,246);
+    background: linear-gradient(90deg, rgba(231,231,246,1) 24%, rgba(2,0,36,1) 100%);   
+    border-radius: 10px 10px;
 }
+
 .search-bar {
     display: flex;
     justify-content: space-between;
@@ -14,13 +14,15 @@
     margin-bottom: 20px;
 }
 
-.inputBox{
+.inputBox {
     width: 400px;
     display: flex;
 }
-input{
+
+input {
     width: 250px;
 }
+
 .search-bar input {
     flex-grow: 1;
     padding: 10px;
@@ -125,17 +127,19 @@ input{
     background: transparent;
     border-radius: 10px;
 }
-.weather-icon img{
+
+.weather-icon img {
     width: 80px;
     height: 80px;
 }
-.weather-details img{
+
+.weather-details img {
     width: 50px;
     height: 50px;
 }
 
-
-@media screen and (min-width: 600px) {
+/* Responsive design */
+@media screen and (min-width: 768px) {
     .weather-app {
         flex-direction: row; 
     }
@@ -144,23 +148,51 @@ input{
         flex: 1; 
         margin-left: 20px; 
     }
-    
 }
 
-/* @media screen and (min-width: 320px) {
-    .main-box{
-        width: 500px;
-        height: auto;
-        background-image: none;
+@media screen and (max-width: 480px) {
+    .main-box {
+        padding: 10px;
     }
+
     .weather-app {
         flex-direction: column; 
     }
-    .weather-sidebar{
+
+    .weather-sidebar {
+        /* width: 50%; */
         flex-direction: row;
+        justify-content: space-evenly;
     }
-    .weather-container{
-        width: 460px;
-        margin: 0%;
+    .weather-box{
+        width: 50%;
     }
-} */
+    
+    .weather-container {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body{
+        margin: 0;
+    }
+    .main-box {
+        padding: 10px;
+    }
+
+    .weather-app {
+        flex-direction: column;
+    }
+
+    .weather-sidebar {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .weather-container {
+        width: 96.55%;
+        margin: 0;
+    }
+}

@@ -114,7 +114,7 @@ const WeatherApp = () => {
                 </div>
                 <div className="weather-details">
                   <p>{weatherData.city.name}, {weatherData.city.country}</p>
-                  <h1>{new Date(weatherData.list[0].dt_txt).toLocaleDateString('en-US', { weekday: 'long' })}</h1>
+                  <h3>{new Date(weatherData.list[0].dt_txt).toLocaleDateString('en-US', { weekday: 'long' })}</h3>
                   <p>{new Date(weatherData.list[0].dt_txt).toLocaleDateString('en-US', { dateStyle: 'full' })}</p>
                   <p>{(weatherData.list[0].main.temp - 273.15).toFixed(2)}°C</p>
                 </div>

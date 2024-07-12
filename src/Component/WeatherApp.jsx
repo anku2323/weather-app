@@ -12,7 +12,7 @@ const WeatherApp = () => {
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('Delhi');
 
-  const { user, loginWithRedirect,isAuthenticated ,logout} = useAuth0();
+  const { user, loginWithRedirect, isAuthenticated, isLoading, logout } = useAuth0();
   console.log("current user", user);
 
   const fetchData = async (query) => {
@@ -33,14 +33,25 @@ const WeatherApp = () => {
   };
 
   useEffect(() => {
-    fetchData(searchQuery);
-  }, [searchQuery]);
+    if (!isLoading && isAuthenticated) {
+      fetchData(searchQuery);
+    }
+  }, [searchQuery, isLoading, isAuthenticated]);
 
   const handleSearch = (event) => {
     event.preventDefault();
     const query = event.target.elements.search.value;
     setSearchQuery(query);
   };
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      loginWithRedirect();
+    }
+  }, [isAuthenticated, isLoading, loginWithRedirect]);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!isAuthenticated) return <p>Redirecting to login...</p>;
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -89,15 +100,9 @@ const WeatherApp = () => {
         </div>
         <div className="profile-icon">
           <label>
-            {isAuthenticated && <h3>{user.name}</h3>}
-            {isAuthenticated?(<button onClick={(e)=>logout()}>Log out</button>):(
-
-            <button type="button" onClick={(e)=>loginWithRedirect()}>
-              <i className="fa-regular fa-user"></i>
-            </button>
-            )}
+            <h3>{user.name}</h3>
+            <button type="button" onClick={() => logout()}>Log out</button>
           </label>
-          
         </div>
       </form>
 
